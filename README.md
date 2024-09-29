@@ -1,14 +1,8 @@
 # Qwen2-Colpali-OCR
 
 
-This Streamlit application demonstrates a Multimodal Retrieval-Augmented Generation (RAG) system using the Qwen2-VL model and a custom RAG implementation. It allows users to upload images and ask questions about them, combining visual and textual information to generate responses.
-
-## Features
-
-- Image upload or selection of an example image
-- Text-based querying of uploaded images
-- Multimodal RAG processing using custom RAG model and Qwen2-VL
-- Adjustable response length
+This application demonstrates a Multimodal Retrieval-Augmented Generation (RAG) system using the Qwen2-VL model and a custom RAG implementation. It allows users to upload images and ask questions about them, combining visual and textual information to generate responses.
+It is deployed here on HuggingFace Spaces [https://huggingface.co/spaces/clayton07/qwen2-colpali-ocr]([url](https://huggingface.co/spaces/clayton07/qwen2-colpali-ocr))
 
 ## Prerequisites
 
@@ -45,6 +39,15 @@ This Streamlit application demonstrates a Multimodal Retrieval-Augmented Generat
 
 3. Open a web browser and navigate to the URL provided by Streamlit (usually `http://localhost:8501`).
 
+
+## Features
+
+- Image upload or selection of an example image
+- Text-based querying of uploaded images
+- Multimodal RAG processing using custom RAG model and Qwen2-VL
+- Adjustable response length
+
+
 ## Usage
 
 1. Choose to upload an image or use the example image.
@@ -68,7 +71,7 @@ Note: For optimal performance, deploy on a platform that provides GPU support.
 
 ## Disclaimer
 
-The app is configured to run on CPU by default, which may result in slower processing times. For better performance, it's recommended to run the app locally on a machine with GPU support.
+The apputilizes the free tier of HuggingFace Spaces, which only has support for CPU, resulting in slower processing times. For optimal performance, it's recommended to run the app locally on a machine with GPU support.
 
 ## Contributing
 
@@ -76,7 +79,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
 
-[Specify your license here]
+GNU Public License v2
 
 ## Acknowledgments
 
