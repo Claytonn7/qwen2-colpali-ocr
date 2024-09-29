@@ -1,0 +1,13 @@
+git+https://github.com/huggingface/transformers.git
+
+qwen-vl-utils
+
+transformers
+
+torch==2.4.1
+
+torchvision==0.19.1
+
+byaldi
+
+qwen_vl_utils
