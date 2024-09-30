@@ -4,6 +4,7 @@ import torch
 from byaldi import RAGMultiModalModel
 from transformers import Qwen2VLForConditionalGeneration, AutoTokenizer, AutoProcessor
 from qwen_vl_utils import process_vision_info
+import re
 
 # Check for CUDA availability
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -33,10 +34,10 @@ processor = load_processor()
 
 st.title("Multimodal RAG App")
 
-st.warning("⚠️ Disclaimer: This app is currently running on CPU, which may result in slow processing times. For optimal performance, download and run the app locally on a machine with GPU support.")
+st.warning("⚠️ Disclaimer: This app is currently running on CPU, which may result in slow processing times (even loading the image may take more than 10 minutes). For optimal performance, download and run the app locally on a machine with GPU support.")
 
 # Add download link
-st.markdown("[📥 Download the app code](https://huggingface.co/spaces/clayton07/colpali-qwen2-ocr/blob/main/app.py)")
+st.markdown("[📥 Download the app code](https://github.com/Claytonn7/qwen2-colpali-ocr)")
 
 # Initialize session state for tracking if index is created
 if 'index_created' not in st.session_state:
@@ -80,7 +81,8 @@ if uploaded_file is not None:
     st.image(uploaded_file, caption="Uploaded Image", use_column_width=True)
 
     # Text query input
-    text_query = st.text_input("Enter your query about the image:")
+    text_query = st.text_input("Enter a single word to search for:")
+    extract_query = "extract text from the image"
 
     max_new_tokens = st.slider("Max new tokens for response", min_value=100, max_value=1000, value=100, step=10)
 
@@ -99,7 +101,7 @@ if uploaded_file is not None:
                             "type": "image",
                             "image": image_path,
                         },
-                        {"type": "text", "text": text_query},
+                        {"type": "text", "text": extract_query},
                     ],
                 }
             ]
@@ -123,9 +125,28 @@ if uploaded_file is not None:
                 generated_ids_trimmed, skip_special_tokens=True, clean_up_tokenization_spaces=False
             )
 
+            def highlight_text(text, query):
+                if not query.strip():
+                    return text
+
+                escaped_query = re.escape(query)
+                pattern = r'\b' + escaped_query + r'\b'
+
+                def replacer(match):
+                    return f'<span style="background-color: green;">{match.group(0)}</span>'
+
+                highlighted_text = re.sub(pattern, replacer, text, flags=re.IGNORECASE)
+                return highlighted_text
+
         # Display results
-        st.subheader("Results:")
-        st.write(output_text[0])
+        highlighted_output = highlight_text(output_text[0], text_query)
+
+        # Display results
+        st.subheader("Extracted Text (with query highlighted):")
+        st.markdown(highlighted_output, unsafe_allow_html=True)
+        # st.subheader("Results:")
+        # st.write(output_text[0])
+
 
     # Clean up temporary file
     if image_source == "Upload an image":
