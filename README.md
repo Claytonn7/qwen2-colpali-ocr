@@ -9,13 +9,17 @@ It is deployed here on HuggingFace Spaces https://huggingface.co/spaces/clayton0
 ## Prerequisites
 
 - Python 3.8+
+- Pytorch 2.4.1
+- Torchvision 0.19.1
+- Qwen V1
+- Byaldi
 - CUDA-compatible GPU (recommended for optimal performance)
 
 ## Installation
 
 1. Clone the repository:
    ```
-   git clone https://github.com/your-username/multimodal-rag-app.git
+   git clone https://github.com/Claytonn7/qwen2-colpali-ocr.git
    cd multimodal-rag-app
    ```
 
@@ -42,38 +46,24 @@ It is deployed here on HuggingFace Spaces https://huggingface.co/spaces/clayton0
 3. Open a web browser and navigate to the URL provided by Streamlit (usually `http://localhost:8501`).
 
 
-## Features
-
-- Image upload or selection of an example image
-- Text-based querying of uploaded images
-- Multimodal RAG processing using custom RAG model and Qwen2-VL
-- Adjustable response length
-
-
 ## Usage
 
 1. Choose to upload an image or use the example image.
 2. If uploading, select an image file (PNG, JPG, or JPEG).
-3. Enter a text query about the image in the provided input field.
+3. Enter a single keyword in the provided input field.
 4. Adjust the maximum number of tokens for the response using the slider.
-5. View the generated response based on the image and your query.
+5. View the extracted text from the image, with the searched keyword highlighted. Example screenshot [here](https://github.com/Claytonn7/qwen2-colpali-ocr/blob/main/examples-app/6-keyword-highlight2.jpg)
 
-## Deployment
-
-This application can be deployed on various platforms that support Streamlit apps. Here are general steps for deployment:
-
-1. Ensure all dependencies are listed in `requirements.txt`.
-2. Choose a deployment platform (e.g., Streamlit Cloud, Heroku, or a cloud provider like AWS or GCP).
-3. Follow the platform-specific deployment instructions, which typically involve:
-   - Connecting your GitHub repository to the deployment platform
-   - Configuring environment variables if necessary
-   - Setting up any required build processes
-
-Note: For optimal performance, deploy on a platform that provides GPU support.
+NB: Check the examples-app directory on this repo for more example screenshots.
 
 ## Disclaimer
 
-The apputilizes the free tier of HuggingFace Spaces, which only has support for CPU, resulting in slower processing times. For optimal performance, it's recommended to run the app locally on a machine with GPU support.
+The app utilizes the free tier of HuggingFace Spaces, which only has support for CPU, resulting in very slow processing times. For optimal performance, it's recommended to run the app locally on a machine with GPU support.
+
+## Acknowledgments
+
+- This project uses the [Qwen2-VL model](https://huggingface.co/Qwen/Qwen2-VL-2B-Instruct) from Hugging Face.
+- The [byaldi](https://github.com/AnswerDotAI/byaldi) implementation of the [colpali model](https://huggingface.co/vidore/colpali).
 
 ## Contributing
 
@@ -81,9 +71,4 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
 
-GNU Public License v2
-
-## Acknowledgments
-
-- This project uses the [Qwen2-VL model](https://huggingface.co/Qwen/Qwen2-VL-2B-Instruct) from Hugging Face.
-- The custom RAG implementation is based on the [colpali model](https://huggingface.co/vidore/colpali).
+This project is licensed under the GPL-2.0 License
