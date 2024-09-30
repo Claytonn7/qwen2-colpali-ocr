@@ -2,7 +2,9 @@
 
 
 This application demonstrates a Multimodal Retrieval-Augmented Generation (RAG) system using the Qwen2-VL model and a custom RAG implementation. It allows users to upload images and ask questions about them, combining visual and textual information to generate responses.
-It is deployed here on HuggingFace Spaces [https://huggingface.co/spaces/clayton07/qwen2-colpali-ocr]([url](https://huggingface.co/spaces/clayton07/qwen2-colpali-ocr))
+
+
+It is deployed here on HuggingFace Spaces https://huggingface.co/spaces/clayton07/qwen2-colpali-ocr
 
 ## Prerequisites
 
